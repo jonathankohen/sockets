@@ -7,10 +7,6 @@ const express = require('express'),
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/api', (req, res) => {
-    res.send('Yoni was here');
-});
-
 const server = app.listen(port, () =>
     console.log(`Listening on port ${port}...`)
 );
@@ -18,5 +14,8 @@ const server = app.listen(port, () =>
 const io = require('socket.io')(server, { cors: true });
 
 io.on('connection', socket => {
-    socket.emit('Welcome', 'Hi from the server');
+    // io.emit('new_client');
+    socket.on('chat_message', msg => {
+        io.emit('new_message_from_server', msg);
+    });
 });

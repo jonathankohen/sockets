@@ -1,21 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-import './App.css';
+import { Router } from '@reach/router';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './scss/styles.scss';
+
+import Main from './pages/Main';
+import Chat from './pages/Chat';
 
 function App() {
-    const [socket] = useState(() => io(':8000'));
-
-    useEffect(() => {
-        socket.on('connect', () => {
-            socket.on('Welcome', data => console.log(data));
-            return () => socket.disconnect(true);
-        });
-        // eslint-disable-next-line
-    }, []);
-
     return (
         <div className="App">
-            <h1>Chat</h1>
+            <header>
+                <nav className="navbar sticky-top navbar-dark bg-primary">
+                    <a className="navbar-brand" href="#!">
+                        Chat App
+                    </a>
+                </nav>
+            </header>
+
+            <main className="container d-flex justify-content-center">
+                <Router>
+                    <Main path="/" />
+                    <Chat path="/chat" />
+                </Router>
+            </main>
+
+            <footer>
+                <nav className="navbar fixed-bottom navbar-dark bg-primary">
+                    <a className="navbar-brand" href="#!">
+                        Sticky bottom
+                    </a>
+                </nav>
+            </footer>
         </div>
     );
 }
