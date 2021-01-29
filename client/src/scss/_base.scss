@@ -1,11 +1,33 @@
-body {
-    height: 100vh;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+// Color Scheme: Laika Come Home
+// Source: https://www.color-hex.com/color-palette/104152
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $offWhite;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+$theme-colors: (
+    'primary': $primary,
+    'secondary': $l3,
+    'success': $comp,
+    'danger': #ff4136,
+);
+
+$body-bg: $l5;
+$navbar-dark-active-color: $offWhite;
+
+.textShadow {
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+        0px 18px 23px rgba(0, 0, 0, 0.1);
 }
+
+.textShadowSm {
+    text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4), 0px 2px 3px rgba(0, 0, 0, 0.1),
+        0px 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';

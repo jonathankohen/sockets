@@ -1,0 +1,3 @@
+- Ninja Bonus: Add different chat rooms that users can join
+
+- Sensei Bonus: Display chat messages from before a user has joined the chat when they join

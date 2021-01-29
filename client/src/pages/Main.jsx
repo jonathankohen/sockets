@@ -1,33 +1,35 @@
 import React, { useState } from 'react';
+import io from 'socket.io-client';
 import { navigate } from '@reach/router';
 
 import Form from '../components/Form';
 
 const Main = () => {
-    const [name, setName] = useState('');
+    const [socket] = useState(() => io(':8000'));
 
-    const handleChange = e => {
-        setName(e.target.value);
-    };
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        sessionStorage.setItem('name', name);
+    const onSubmitProp = input => {
+        localStorage.setItem('name', input.trim());
+        const username = localStorage.getItem('name');
+        socket.emit('new_user', username);
         navigate(`/chat`);
     };
 
     return (
         <>
-            <h1 className="my-5">Please enter name below:</h1>
-            <Form
-                className=""
-                handleSubmit={handleSubmit}
-                handleChange={handleChange}
-                value={name}
-                label="Enter name"
-                placeholder="John Smith"
-                buttonText="Start Chatting"
-            />
+            <div className="container">
+                <div className="row main align-items-end">
+                    <div className="col">
+                        <h1 className="my-5 textShadowSm">Enter name &darr;</h1>
+                        <Form
+                            onSubmitProp={onSubmitProp}
+                            initialInput=""
+                            label="Please enter name below:"
+                            placeholder="ex/ John Smith"
+                            buttonText="Start Chatting"
+                        />
+                    </div>
+                </div>
+            </div>
         </>
     );
 };

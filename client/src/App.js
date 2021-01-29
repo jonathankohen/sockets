@@ -16,20 +16,12 @@ function App() {
                 </nav>
             </header>
 
-            <main className="container d-flex justify-content-center">
+            <main>
                 <Router>
                     <Main path="/" />
                     <Chat path="/chat" />
                 </Router>
             </main>
-
-            <footer>
-                <nav className="navbar fixed-bottom navbar-dark bg-primary">
-                    <a className="navbar-brand" href="#!">
-                        Sticky bottom
-                    </a>
-                </nav>
-            </footer>
         </div>
     );
 }

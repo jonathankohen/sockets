@@ -1,34 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Form = props => {
     const {
-        handleSubmit,
-        handleChange,
-        input,
-        placeholder,
-        label,
-        buttonText,
-    } = props;
+            onSubmitProp,
+            initialInput,
+            placeholder,
+            label,
+            buttonText,
+        } = props,
+        [input, setInput] = useState(initialInput);
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        onSubmitProp(input);
+        setInput('');
+    };
 
     return (
-        <div className="d-flex justify-content-center">
-            <form className="form-inline" onSubmit={handleSubmit}>
-                <label className="sr-only" htmlFor="form">
-                    {label}
-                </label>
-                <input
-                    type="text"
-                    className="form-control mb-2 mr-sm-2"
-                    id="form"
-                    placeholder={placeholder}
-                    value={input}
-                    onChange={handleChange}
-                />
-                <button type="submit" className="btn btn-primary mb-2">
-                    {buttonText}
-                </button>
-            </form>
-        </div>
+        <form
+            className="form-inline justify-content-between"
+            onSubmit={handleSubmit}
+        >
+            <label className="sr-only" htmlFor="formInput">
+                {label}
+            </label>
+            <input
+                type="text"
+                className="form-control col-lg-10"
+                id="formInput"
+                placeholder={placeholder}
+                value={input}
+                onChange={e => setInput(e.target.value)}
+            />
+            <button
+                type="submit"
+                className="btn btn-primary col-lg-2"
+                id="formButton"
+            >
+                {buttonText}
+            </button>
+        </form>
     );
 };
 
