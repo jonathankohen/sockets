@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Message = props => {
-    const { message, greeting } = props,
-        session_name = sessionStorage.getItem('name');
+    const { message } = props,
+        session_name = localStorage.getItem('name');
 
     let sentByCurrentUser = false;
 

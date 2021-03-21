@@ -4,10 +4,12 @@ import io from 'socket.io-client';
 import Form from '../components/Form';
 import Messages from '../components/Messages';
 
-const Chat = () => {
+const Chat = props => {
     const [socket] = useState(() => io(':8000')),
         [messages, setMessages] = useState([]),
-        [greeting, setGreeting] = useState(''),
+        [greeting, setGreeting] = useState('');
+
+    const secondInput = false,
         messagesEndRef = React.createRef();
 
     useEffect(() => {
@@ -65,6 +67,7 @@ const Chat = () => {
                     <Form
                         onSubmitProp={onSubmitProp}
                         initialInput=""
+                        secondInput={secondInput}
                         label="Enter message"
                         placeholder="Enter message"
                         buttonText="Send"

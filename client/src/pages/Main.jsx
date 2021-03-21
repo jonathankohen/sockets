@@ -7,11 +7,16 @@ import Form from '../components/Form';
 const Main = () => {
     const [socket] = useState(() => io(':8000'));
 
-    const onSubmitProp = input => {
+    const secondInput = true;
+
+    const onSubmitProp = (input, roomInput) => {
         localStorage.setItem('name', input.trim());
+
         const username = localStorage.getItem('name');
-        socket.emit('new_user', username);
-        navigate(`/chat`);
+
+        socket.emit('new_user', (username, roomInput));
+
+        navigate(`/chat/${roomInput}`);
     };
 
     return (
@@ -23,9 +28,10 @@ const Main = () => {
                         <Form
                             onSubmitProp={onSubmitProp}
                             initialInput=""
-                            label="Please enter name below:"
-                            placeholder="ex/ John Smith"
+                            label="Enter your name"
+                            placeholder="Enter your name"
                             buttonText="Start Chatting"
+                            secondInput={secondInput}
                         />
                     </div>
                 </div>

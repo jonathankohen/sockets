@@ -19,7 +19,7 @@ function App() {
             <main>
                 <Router>
                     <Main path="/" />
-                    <Chat path="/chat" />
+                    <Chat path="/chat/:id" />
                 </Router>
             </main>
         </div>

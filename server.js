@@ -14,10 +14,12 @@ const server = app.listen(port, () =>
 const io = require('socket.io')(server, { cors: true });
 
 io.on('connection', socket => {
-    socket.join('room1');
-
-    socket.on('new_user', username => {
-        io.to('room1').emit('greeting', `${username} has joined the chat`);
+    socket.on('new_user', (username, roomInput) => {
+        socket.join(`${roomInput}`);
+        io.to(`${roomInput}`).emit(
+            'greeting',
+            `${username} has joined the chat`
+        );
     });
 
     socket.on('chat_message', msg => {

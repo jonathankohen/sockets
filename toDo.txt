@@ -1,3 +1,5 @@
 - Ninja Bonus: Add different chat rooms that users can join
+    in Main.jsx add another input for room ID
+
 
 - Sensei Bonus: Display chat messages from before a user has joined the chat when they join

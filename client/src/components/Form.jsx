@@ -4,15 +4,17 @@ const Form = props => {
     const {
             onSubmitProp,
             initialInput,
+            secondInput,
             placeholder,
             label,
             buttonText,
         } = props,
-        [input, setInput] = useState(initialInput);
+        [input, setInput] = useState(initialInput),
+        [roomInput, setRoomInput] = useState(initialInput);
 
     const handleSubmit = e => {
         e.preventDefault();
-        onSubmitProp(input);
+        onSubmitProp(input, roomInput);
         setInput('');
     };
 
@@ -32,6 +34,16 @@ const Form = props => {
                 value={input}
                 onChange={e => setInput(e.target.value)}
             />
+            {secondInput ? (
+                <input
+                    type="text"
+                    className="form-control col-lg-10 my-3"
+                    id="formInput"
+                    placeholder="Enter room name"
+                    value={roomInput}
+                    onChange={e => setRoomInput(e.target.value)}
+                />
+            ) : null}
             <button
                 type="submit"
                 className="btn btn-primary col-lg-2"
